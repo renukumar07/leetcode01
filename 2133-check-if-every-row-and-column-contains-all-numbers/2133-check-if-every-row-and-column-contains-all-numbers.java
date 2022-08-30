@@ -1,5 +1,16 @@
 class Solution {
+    public boolean checkAllElementsInSet(Set<Integer> set){
+        int k = 1;
+        for(int a: set){
+            if(a != k){
+                return false;
+            }
+            k++;
+        }
+        return true;
+    }
     public boolean checkValid(int[][] matrix) {
+        boolean row = false, col = false;
         Set<Integer> set = null;
         for(int i = 0;i<matrix.length;i++){
             set = new HashSet<>();
@@ -9,12 +20,9 @@ class Solution {
             if(set.size()!=matrix.length){
                 return false;
             }
-            int k = 1;
-            for(int a: set){
-                if(a != k){
-                    return false;
-                }
-                k++;
+            row = checkAllElementsInSet(set);
+            if(row==false){
+                return false;
             }
         }
         for(int i = 0;i<matrix.length;i++){
@@ -25,14 +33,11 @@ class Solution {
             if(set.size()!=matrix.length){
                 return false;
             }
-            int k = 1;
-            for(int a: set){
-                if(a != k){
-                    return false;
-                }
-                k++;
+            col = checkAllElementsInSet(set);
+            if(col==false){
+                return false;
             }
         }
-        return true;
+        return row & col;
     }
 }
