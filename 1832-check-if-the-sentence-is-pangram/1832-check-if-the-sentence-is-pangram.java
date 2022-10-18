@@ -1,8 +1,5 @@
 class Solution {
     public boolean checkIfPangram(String sentence) {
-        if(sentence.length()<26){
-            return false;
-        }
         Set<Character> set = new HashSet<>();
         for(char c: sentence.toCharArray()){
             set.add(c);
