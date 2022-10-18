@@ -3,15 +3,10 @@ class Solution {
         if(sentence.length()<26){
             return false;
         }
-        int[] arr = new int[26];
+        Map<Character,Integer> map = new HashMap<>();
         for(char c: sentence.toCharArray()){
-            arr[c-'a']+=1;
+            map.put(c,1);
         }
-        for(int i = 0;i<arr.length;i++){
-            if(arr[i]==0){
-                return false;
-            }
-        }
-        return true;
+        return map.size()==26;
     }
 }
