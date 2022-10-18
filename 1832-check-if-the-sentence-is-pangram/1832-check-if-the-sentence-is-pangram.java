@@ -3,10 +3,10 @@ class Solution {
         if(sentence.length()<26){
             return false;
         }
-        Map<Character,Integer> map = new HashMap<>();
+        Set<Character> set = new HashSet<>();
         for(char c: sentence.toCharArray()){
-            map.put(c,1);
+            set.add(c);
         }
-        return map.size()==26;
+        return set.size()==26;
     }
 }
