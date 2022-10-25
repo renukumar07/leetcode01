@@ -7,6 +7,8 @@ class Solution {
         return sb.toString();
     }
     public boolean arrayStringsAreEqual(String[] word1, String[] word2) {
-        return concatenateElements(word1).equals(concatenateElements(word2));
+        String s1 = concatenateElements(word1);
+        String s2 = concatenateElements(word2);
+        return s1.equals(s2);
     }
 }
