@@ -1,17 +1,13 @@
 class Solution {
     public int[] countBits(int n) {
-        int[] result = new int[n+1];
+        int[] dp = new int[n+1];
         for(int i = 0;i<=n;i++){
-            result[i] = noOfBits(i);
+            if(i <= 1){
+                dp[i] = i;
+            }else{
+                dp[i] = dp[i/2] + i%2;
+            }            
         }
-        return result;
-    }
-    private int noOfBits(int i){
-        int count = 0;
-        while(i>0){
-            count+=i%2;
-            i = i/2;
-        }
-        return count;
+        return dp;
     }
 }
