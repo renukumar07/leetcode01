@@ -9,9 +9,7 @@ class Solution {
     private int noOfBits(int i){
         int count = 0;
         while(i>0){
-            if(i%2!=0){
-                count++;
-            }
+            count+=i%2;
             i = i/2;
         }
         return count;
