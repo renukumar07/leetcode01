@@ -4,7 +4,6 @@ class Solution {
             return k;
         if(k<=numOnes+numZeros)
             return numOnes;
-        int remaining = k-numOnes-numZeros;
-        return numOnes - remaining;
+        return 2*numOnes + numZeros - k;
     }
 }
