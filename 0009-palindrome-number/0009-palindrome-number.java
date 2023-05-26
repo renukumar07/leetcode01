@@ -1,14 +1,20 @@
 class Solution {
     public boolean isPalindrome(int x) {
-        if(x<0)
+        if(x==0)
+            return true;
+        if(x<0 || x%10==0)
             return false;
-        int temp = x;
-        int newNum = 0;
-        while(temp>0){
-            int digit = temp%10;
-            newNum = (newNum*10)+digit;
-            temp=temp/10;
+        int secondHalf = 0;
+        int firstHalf = x;
+        while(secondHalf<firstHalf){
+            int num = firstHalf%10;
+            secondHalf = (secondHalf*10) + num;
+            firstHalf = firstHalf/10;
         }
-        return x==newNum;
+        System.out.println("s = "+secondHalf);
+        System.out.println("f = "+firstHalf);
+        if(secondHalf/10 == firstHalf || secondHalf == firstHalf)
+            return true;
+        return false;
     }
 }
