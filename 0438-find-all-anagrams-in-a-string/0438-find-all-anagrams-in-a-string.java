@@ -1,53 +1,32 @@
 class Solution {
     public List<Integer> findAnagrams(String s, String p) {
-        if (s == null || p == null) {
-            throw new IllegalArgumentException("Input string is null");
+        List<Integer> list = new ArrayList<>();
+        int[] pf = new int[26];
+        int[] sf = new int[26];
+        for(char c: p.toCharArray()){
+            pf[c-'a'] = pf[c-'a']+1;
         }
-
-        List<Integer> result = new ArrayList<>();
-        int sLen = s.length();
-        int pLen = p.length();
-        if (sLen * pLen == 0 || sLen < pLen) {
-            return result;
-        }
-
-        Map<Character, Integer> map = new HashMap<>();
-        for (int i = 0; i < p.length(); i++) {
-            map.put(p.charAt(i), map.getOrDefault(p.charAt(i), 0) + 1);
-        }
-
-        int toBeMatched = map.size();
-        int start = 0;
-        int end = 0;
-
-        while (end < sLen) {
-            char eChar = s.charAt(end);
-            if (map.containsKey(eChar)) {
-                int count = map.get(eChar);
-                if (count == 1) {
-                    toBeMatched--;
-                }
-                map.put(eChar, count - 1);
+        for(int i = 0;i<s.length();i++){
+            if(i>p.length()-1){
+                char ch = s.charAt(i-p.length());
+                sf[ch-'a'] = sf[ch-'a']-1;
             }
-            end++;
-
-            if (end - start > pLen) {
-                char sChar = s.charAt(start);
-                if (map.containsKey(sChar)) {
-                    int count = map.get(sChar);
-                    if (count == 0) {
-                        toBeMatched++;
-                    }
-                    map.put(sChar, count + 1);
-                }
-                start++;
-            }
-
-            if (toBeMatched == 0) {
-                result.add(start);
+            char c = s.charAt(i);
+            sf[c-'a'] = sf[c-'a'] + 1;
+            boolean isEqual = isTwoFrequencyMapEqual(pf, sf);
+            if(isEqual){
+                list.add(i-p.length()+1);
             }
         }
-
-        return result;
+        return list;
+    }
+    
+    private boolean isTwoFrequencyMapEqual(int[] pf, int[] sf){
+        for(int i = 0;i<26;i++){
+            if(pf[i]!=sf[i]){
+                return false;
+            }
+        }
+        return true;
     }
 }
